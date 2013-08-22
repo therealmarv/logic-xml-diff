@@ -20,7 +20,17 @@ fi
 tmpdir=`mktemp -d 2>/dev/null || mktemp -d -t 'xmlcompare'`
 trap 'rm -rf "$tmpdir"' EXIT INT TERM HUP
 xsltproc -o $tmpdir/$1 indent-and-sort-attr.xsl $1
+if [ $? -ne 0 ]
+then
+   echo "Something went wrong in $1. Is the XML a real XML?"
+   exit 2
+fi
 xsltproc -o $tmpdir/$2 indent-and-sort-attr.xsl $2
+if [ $? -ne 0 ]
+then
+   echo "Something went wrong in $2. Is the XML a real XML?"
+   exit 2
+fi
 
 # use a simple diff, replace by kdiff3 or whatever you like more
 diff $tmpdir/$1 $tmpdir/$2
