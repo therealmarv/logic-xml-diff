@@ -28,7 +28,7 @@ is the same as
           <hello b="2" a="1"  />
       <test/>
       
-This little puts everything in order and diffs the ordered XMLs.
+logic-xml-diff puts everything in order and diffs the ordered XMLs.
 
 
 Have fun!  
